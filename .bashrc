@@ -95,6 +95,7 @@ alias l='ls -lat'
 alias c='clear'
 alias cl='c && l'
 alias apt='apt -y'
+alias aptitude='aptitude -y'
 alias echo='echo -e'
 
 
