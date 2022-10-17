@@ -94,6 +94,8 @@ alias l='ls -CF'
 alias l='ls -lat'
 alias c='clear'
 alias cl='c && l'
+alias apt='apt -y'
+alias echo='echo -e'
 
 
 # Alias definitions.
