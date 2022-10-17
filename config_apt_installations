@@ -1,3 +1,8 @@
+#!/bin/bash
 ssh-keygen -t ecdsa -b 521
 ssh-agent -d .ssh/id_ecdsa
 git config --global core.editor "vim"
+read -p "Your Git Username: " name
+git config --global user.name $name
+read -p "Your Git Email Address: " email
+git config --global user.email $email
