@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ssh-keygen -t ecdsa -b 521
+ssh-agent -d .ssh/id_ecdsa
