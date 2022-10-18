@@ -2,9 +2,9 @@
 
 function test() {
   local g="$(git rev-parse --git-dir 2>/dev/null)"
+  local r
+  local b
   if [ -n "$g" ]; then
-    local r
-    local b
     if [ -d "$g/rebase-apply" ]
     then
       if test -f "$g/rebase-apply/rebasing"
@@ -31,5 +31,8 @@ function test() {
       b="$(git symbolic-ref HEAD 2>/dev/null)"
     fi
   fi
-  cat $b "  " $a
+  echo ${r}
 }
+
+
+test
