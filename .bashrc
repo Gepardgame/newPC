@@ -8,6 +8,10 @@ case $- in
       *) return;;
 esac
 
+#Set the default Editor to vim
+export EDITOR="vim"
+set -o vi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -15,9 +19,12 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=100000
-HISTFILESIZE=200000
+HISTSIZE=1000
+HISTFILESIZE=2000
+HISTTIMEFORMAT="%F %T "
+HISTCONTROL=ignoredups
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -56,13 +63,114 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+#Some Colors
+schwarz="\e[30m"
+weis="\e[97m"
+
+#dunkele Farben
+d_blau="\e[34m"
+d_gruen="\e[32m"
+d_aqua="\e[36m"
+d_rot="\e[31m"
+d_lila="\e[35m"
+d_gelb="\e[33m"
+d_grau="\e[90m"
+
+#helle Farben
+h_grau="\e[37m"
+h_blau="\e[94 "
+h_gruen="\e[92m"
+h_aqua="\e[96m"
+h_rot="\e[91m"
+h_lila="\e[95m"
+h_gelb="\e[93m"
+
+#dunklere Hintergrundfarbe
+b_schwarz="\e[40m"
+b_rot="\e[41m"
+b_gruen="\e[42m"
+b_orange="\e[43m"
+b_blau="\e[44m"
+b_lila="\e[45m"
+b_aqua="\e[46m"
+b_grau="\e[100m"
+
+#heller Hintergrundfarbe
+b_h_grau="\e[47m"
+b_h_rot="\e[101m"
+b_h_gruen="\e[102m"
+b_gelb="\e[103m"
+b_h_blau="\e[104m"
+b_h_lila="\e[105m"
+b_h_aqua="\e[106m"
+b_weis="\e[107m"
+
+#Besonderheiten
+normal="\e[0m"
+fett="\e[1m"
+kursiv="\e[3m"
+durchgestrichen="\e[9m"
+
+#Linuxbesonderheiten
+reverse="\e[7m"
+blinken="\e[5m"
+versteckt="\e[8m"
+
+function git_branch() {
+    if [ -d .git ] ; then
+        printf ${h_aqua}" %s " "($(git branch 2> /dev/null | awk '/\*/{print $2}'))";
+    fi
+}
+
+function GetMergeAndRebaseConflict() {
+  local g="$(git rev-parse --git-dir 2>/dev/null)"
+  local r
+  local b
+  if [ -n "$g" ]; then
+    if [ -d "$g/rebase-apply" ]
+    then
+      if test -f "$g/rebase-apply/rebasing"
+      then
+        r="|REBASE"
+	printf ${d_rot}${r}
+      elif test -f "$g/rebase-apply/applying"
+      then
+        r="|AM"
+	printf ${d_rot}${r}
+      else
+        r="|AM/REBASE"
+	printf ${d_rot}${r}
+      fi
+      b="$(git symbolic-ref HEAD 2>/dev/null)"
+    elif [ -f "$g/rebase-merge/interactive" ]
+    then
+      r="|REBASE-i"
+      b="$(cat "$g/rebase-merge/head-name")"
+      printf ${d_rot}${r}
+    elif [ -d "$g/rebase-merge" ]
+    then
+      r="|REBASE-m"
+      b="$(cat "$g/rebase-merge/head-name")"
+      printf ${d_rot}${r}
+    elif [ -f "$g/MERGE_HEAD" ]
+    then
+      r="|MERGING"
+      b="$(git symbolic-ref HEAD 2>/dev/null)"
+      printf ${d_rot}${r}
+    fi
+   ## printf ${d_rot}${r}
+  fi
+##  printf ${d_rot}${r}
+}
+
+
+
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1='${debian_chroot:+($debian_chroot)}'${h_gruen}${fett}'[\u@\h]'${normal}': '${d_rot}'\w$(git_branch)'${normal}'$(GetMergeAndRebaseConflict)'${normal}'\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}'${d_rot}'\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -92,11 +200,11 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias l='ls -lat'
-alias c='clear'
-alias cl='c && l'
 alias apt='apt -y'
 alias aptitude='aptitude -y'
 alias echo='echo -e'
+alias c='clear'
+alias cl='c && l'
 
 
 # Alias definitions.
@@ -122,3 +230,8 @@ fi
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [ -f /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash ] && . /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash
+
+#Own funktions
+function hg() {
+    history | grep "$1";
+}
