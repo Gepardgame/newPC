@@ -1,0 +1,3 @@
+#!/bin/bash
+echo Wie soll das Script heißen?
+read name

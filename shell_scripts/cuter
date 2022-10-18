@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function cuter {
+  if [[ -n $4 ]]; then
+    let ende=$3+1
+    ws=$4
+  else
+    ende=2
+    ws=$3
+  fi
+
+
+  for i in $1; do
+      test=0
+      j=1
+      while [ $test -eq 0 ]; do
+          ergebnis=$( echo $i | cut -d "$2" -f$j- )
+          if [ ! $ergebnis == "" ]; then
+              let j=$j+1
+          else
+            test=1
+            let j=$j-$ende
+          fi
+      done
+      if [[ $ws == "s" ]]; then
+        echo $i | cut -d "$2" -f-$j
+      elif [[ $ws == "w" ]]; then
+        echo $i | cut -d "$2" -f$j-
+      fi
+  done
+}

@@ -1,0 +1,6 @@
+#!/bin/bash
+source farbcodes.sh
+cd $1
+jar --no-manifest --create --file ${1}.jar $( find )
+echo -e "${d_gelb}Deine Jar wurde erstellt!$normal"
+mv ${1}.jar ../

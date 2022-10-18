@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+path=$( pwd )
+cd ~/Vorlagen
+ls
+read -p "Was ist die Vorlage? " vorlage
+echo $vorlage
+read -p "Neuer Name für den Ordner: (Leer lassen für den selbern Ordnernamen) " name
+if [ -z "$name" ]; then
+  cp $vorlage ${path}/. -r
+else
+  cp $vorlage ${path}/$name -r
+fi

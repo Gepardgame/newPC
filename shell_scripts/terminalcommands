@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+
+# Server connecten:
+sudo mount.cifs
+# Für Scripte:
+# !/bin/bash
+IP-Adrresse rausfinden:
+nslookup <Domainname>
+# datei.deb-Dateien installieren datei = gleich irgend ein Name der Datei
+sudo dpkg -i <datei.deb>
+# Soundeinstellungen
+pavucontrol
+# ssh-Key
+ssh-keygen
+ssh-copy-id <server>
+
+# Java Installieren
+sudo vi /etc/environment
+Path=":/usr/lib/jvm/jdk1.8.0_311/bin:/usr/lib/jvm/jdk1.8.0_311/jre/bin"
+J2SDKDIR="/usr/lib/jvm/jdk1.8.0_311"
+J2REDIR="/usr/lib/jvm/jdk1.8.0_311/jre"
+JAVA_HOME="/usr/lib/jvm/jdk1.8.0_311"
+
+
+sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0_311/bin/java" 0
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.8.0_311/bin/javac" 0
+sudo update-alternatives --set java /usr/lib/jvm/jdk1.8.0_311/bin/java
+sudo update-alternatives --set javac /usr/lib/jvm/jdk1.8.0_311/bin/javac
+
+
+update-alternatives --list java
+update-alternatives --list javac
+
+# Damit kannst du zu XFCE wechseln
+sudo tasksel
+
+
+# automate scripts
+systemd

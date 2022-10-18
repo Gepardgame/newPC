@@ -1,0 +1,73 @@
+#!/bin/bash
+source farbcodes.sh
+jar=false
+function withjar {
+  length=${#OPTARG}
+  let length1=$length-4
+  ohnejar=$( echo "$OPTARG" | cut -b-$length1 )
+  mkdir $ohnejar
+  cp $OPTARG $ohnejar/
+  cd $ohnejar
+  unzip $OPTARG
+  echo -e "${d_lild}Die Jar wurde entpackt!"
+  rm $OPTARG
+  cp /usr/local/bin/cfr-0.144.jar ./cfr-0.144.jar
+  loeschen=$OPTARG
+  decompiler $loeschen
+}
+function withoutjar {
+  cd $OPTARG
+  cp /usr/local/bin/cfr-0.144.jar ./cfr-0.144.jar
+
+  if [[ $jar == false ]]; then
+    h="../${OPTARG}_decomp/"
+    [ ! -f "$h" ] && mkdir $h
+  else
+      h="${OPTARG}/"
+  fi
+
+  for i in $( find | grep -v .class | grep -v cfr-0.144.jar | cut -d '/' -f2- | sort -u ); do
+
+    if [[ -d $i ]]; then
+
+      if [[ $i != "." ]]; then
+        [ ! -f "${h}$i/" ] && mkdir ${h}$i && echo -e "${d_lila}Ordner $i wurde angelegt!"
+      fi
+    else
+      [ -n "${h}$i/" ] && cp $i ${h}$i && echo -e "${d_blau}Datei $i wurde nach ${OPTARG}_decomp/$i kopiert!"
+    fi
+  done
+
+  decompiler $h
+}
+function decompiler {
+  for i in $( find | grep .class | cut -d '.' -f2- | cut -d '/' -f2- | sort -u ); do
+    length=${#i}
+    let length1=$length-6
+    isclass=$( echo "$i" | cut -b$length1- )
+    if [[ $isclass == *".class" ]]; then
+      ohnejava=$( echo "$i" | cut -b-$length1 )
+      [ -n "$h$ohnejava.java" ] && touch $h$ohnejava.java
+      java -jar cfr-0.144.jar $ohnejava.class >> $h$ohnejava.java
+      echo -e "${d_aqua}${ohnejava}.class wurde in ${ohnejava}.java umgewandelt!"
+
+      if [[ -n $loeschen ]]; then
+        rm ${ohnejava}.class
+        echo -e "${h_gruen}${ohnejava}.class wurde glöscht!"
+      fi
+    fi
+  done
+  echo -e "${d_gruen}Alle Klassen wurden in Javadateien umgewandelt"
+  rm cfr-0.144.jar
+  cd ..
+}
+
+
+while getopts "f:j:c:" opt; do
+  case $opt in
+    c) jarcompleter $OPTARG && jar=true;;
+    f) withoutjar $OPTARG;;
+    j) withjar $OPTARG;;
+    \?) echo -e "$d_rot-f for directories and -j for .jar Files"
+  esac
+done
