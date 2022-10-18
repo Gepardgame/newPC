@@ -31,4 +31,5 @@ function test() {
       b="$(git symbolic-ref HEAD 2>/dev/null)"
     fi
   fi
+  cat $b "  " $a
 }
