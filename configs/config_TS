@@ -1,0 +1,4 @@
+#!/bin/bash
+
+wget https://addons-content.teamspeak.com/686209af-0b66-4805-b2d7-0e990f7cb9e0/files/15/DarkenTSv172_5ec97131ef925.ts3_style
+wget https://addons-content.teamspeak.com/0b57d54d-b46c-433d-8f7e-2eea28470007/files/8/DarkenTS_v1.7.1.ts3_iconpack

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+wget https://dl.4players.de/ts/releases/3.5.6/TeamSpeak3-Client-linux_amd64-3.5.6.run
+
+chmod 744 TeamSpeak3-Client-linux_amd64-3.5.6.run
+./TeamSpeak3-Client-linux_amd64-3.5.6.run

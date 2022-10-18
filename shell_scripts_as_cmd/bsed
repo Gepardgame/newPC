@@ -1,0 +1,5 @@
+#!/bin/bash
+
+read -p "Write what you want to put in: " input
+sed -i.bak "${1}i\\
+$input" $2

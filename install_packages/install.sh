@@ -1,11 +1,11 @@
 #!/bin/bash
 
-linesOfFile=$(wc -l < install_from_list)
-i=1
-while [ $i -lt $linesOfFile ]
-do
-	programm=$(cat -n install_from_list | grep ${i} | cut --bytes=8-)
-	sudo apt install $programm
-       	#echo $programm	
-	let i=$i+1	
+for i in $( cat install_from_list);do
+	sudo apt -y install $i
+done
+
+
+for i in $( ls install_by_scripts ); do
+	cd Downloads
+	./install_by_scripts/$i
 done
