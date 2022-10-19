@@ -5,7 +5,5 @@ vim
 rlwrap
 htop
 thunderbird
-screen
-curl
-wget
 python3
+brave-browser
