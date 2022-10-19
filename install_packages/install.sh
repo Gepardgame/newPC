@@ -14,4 +14,4 @@ done
 for i in $( cat install_from_list); do
 	sudo apt -y install $i
 done
-update 
+update

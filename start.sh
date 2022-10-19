@@ -1,4 +1,7 @@
 #!/bin/bash
 
-${home}/install_packages/install.sh
+${installers}/install.sh
+for i in $( ls ${home}/configs); do
+  ./$i
+done
 cp ${home}/.bashrc ~/.bashrc
