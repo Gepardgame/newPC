@@ -5,3 +5,5 @@ wget https://launcher.mojang.com/download/Minecraft.deb
 wget https://launcher.mojang.com/download/Minecraft.tar.gz
 
 chmod 744 Minecraft.deb
+
+installer 1 Minecraft.deb

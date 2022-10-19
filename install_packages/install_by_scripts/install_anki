@@ -1,5 +1,5 @@
 #!/bin/bash
 
 wget https://github.com/ankitects/anki/releases/download/2.1.54/anki-2.1.54-linux-qt6.tar.zst
-
-
+cd Downloads
+installer 2 2.1.54/anki-2.1.54-linux-qt6
