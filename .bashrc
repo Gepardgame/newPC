@@ -2,8 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-source /home/tom/Schreibtisch/Code/newPC/shell_scripts/aliase/aliases_as_funcs
-source /home/tom/Schreibtisch/Code/newPC/shell_scripts/aliase/aliases
+source /home/tom/Schreibtisch/Code/newPC/shell_scripts/variables
 
 # If not running interactively, don't do anything
 case $- in

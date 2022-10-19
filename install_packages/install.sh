@@ -1,5 +1,6 @@
 #!/bin/bash
 
+update
 for i in $( cat install_from_list_pre); do
 	sudo apt -y install $i
 done
@@ -13,3 +14,4 @@ done
 for i in $( cat install_from_list); do
 	sudo apt -y install $i
 done
+update 

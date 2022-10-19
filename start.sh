@@ -1,3 +1,4 @@
 #!/bin/bash
 
-echo "Test"
+${home}/install_packages/install.sh
+cp ${home}/.bashrc ~/.bashrc

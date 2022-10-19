@@ -4,7 +4,9 @@ source ${home}/shell_scripts/farbcodes.sh
 source ${home}/shell_scripts/git_status
 
 function installer() {
-  echo -e "${1}\n${2}" | /home/tom/Schreibtisch/Code/newPC/shell_scripts/Installer
+  echo -e "${1}\n${2}" | ${home}/shell_scripts/Installer
 }
 
-#function
+function update() {
+  ${home}/shell_scripts/updater
+}
