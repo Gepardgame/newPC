@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#cd ..
+home=$(pwd)
+cd
+
+source ${home}/shell_scripts/aliase/aliases
+source ${home}/shell_scripts/aliase/aliases_as_funcs

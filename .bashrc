@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+source /home/tom/Schreibtisch/Code/newPC/shell_scripts/aliase/aliases_as_funcs
+source /home/tom/Schreibtisch/Code/newPC/shell_scripts/aliase/aliases
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -63,61 +66,10 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-source /home/tom/Schreibtisch/Code/newPC/shell_scripts/farbcodes.sh
-
-function git_branch() {
-    if [ -d .git ] ; then
-        printf ${h_aqua}" %s " "($(git branch 2> /dev/null | awk '/\*/{print $2}'))";
-    fi
-}
-
-function GetMergeAndRebaseConflict() {
-  local g="$(git rev-parse --git-dir 2>/dev/null)"
-  local r
-  local b
-  if [ -n "$g" ]; then
-    if [ -d "$g/rebase-apply" ]
-    then
-      if test -f "$g/rebase-apply/rebasing"
-      then
-        r="|REBASE"
-	printf ${d_rot}${r}
-      elif test -f "$g/rebase-apply/applying"
-      then
-        r="|AM"
-	printf ${d_rot}${r}
-      else
-        r="|AM/REBASE"
-	printf ${d_rot}${r}
-      fi
-      b="$(git symbolic-ref HEAD 2>/dev/null)"
-    elif [ -f "$g/rebase-merge/interactive" ]
-    then
-      r="|REBASE-i"
-      b="$(cat "$g/rebase-merge/head-name")"
-      printf ${d_rot}${r}
-    elif [ -d "$g/rebase-merge" ]
-    then
-      r="|REBASE-m"
-      b="$(cat "$g/rebase-merge/head-name")"
-      printf ${d_rot}${r}
-    elif [ -f "$g/MERGE_HEAD" ]
-    then
-      r="|MERGING"
-      b="$(git symbolic-ref HEAD 2>/dev/null)"
-      printf ${d_rot}${r}
-    fi
-   ## printf ${d_rot}${r}
-  fi
-##  printf ${d_rot}${r}
-}
-
-
-
 if [ "$color_prompt" = yes ]; then
 	PS1='${debian_chroot:+($debian_chroot)}'${h_gruen}${fett}'[\u@\h]'${normal}': '${d_rot}'\w$(git_branch)'${normal}'$(GetMergeAndRebaseConflict)'${normal}'\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}'${d_rot}'\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
@@ -129,31 +81,10 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
-alias l='ls -lat'
-alias apt='apt -y'
-alias aptitude='aptitude -y'
-alias echo='echo -e'
-alias c='clear'
-alias cl='c && l'
 
 
 # Alias definitions.

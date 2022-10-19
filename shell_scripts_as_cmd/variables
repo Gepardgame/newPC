@@ -1,6 +1,0 @@
-#!/bin/bash
-
-cd ..
-home=$(pwd)
-
-echo $home
