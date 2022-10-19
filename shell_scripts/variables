@@ -3,6 +3,7 @@
 home="$HOME/Schreibtisch/Code/newPC"
 scripts="${home}/shell_scripts"
 installers="${home}/install_packages"
+config="${home}/configs"
 
 source ${scripts}/aliase/aliases
 source ${scripts}/aliase/aliases_as_funcs

@@ -12,5 +12,5 @@ function update() {
 }
 
 function bsed() {
-  ${scripts}/bsed
+  echo $3 | ${scripts}/bsed $1 $2
 }

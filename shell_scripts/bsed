@@ -1,5 +1,13 @@
 #!/bin/bash
 
 read -p "Write what you want to put in: " input
-sed -i.bak "${1}i\\
-$input" $2
+round=1
+for i in $(cat $1); do
+  if [ $round -eq $2 ]; then
+      echo $input >> $1.bak
+  fi
+  echo $i >> $1.bak
+  round=$(expr $round + 1)
+done
+
+mv $1.bak $1
