@@ -1,0 +1,46 @@
+#!/bin/bash
+
+function git_branch() {
+    if [ -d .git ] ; then
+        printf ${h_aqua}" %s " "($(git branch 2> /dev/null | awk '/\*/{print $2}'))";
+    fi
+}
+
+function GetMergeAndRebaseConflict() {
+  local g="$(git rev-parse --git-dir 2>/dev/null)"
+  local r
+  local b
+  if [ -n "$g" ]; then
+    if [ -d "$g/rebase-apply" ]
+    then
+      if test -f "$g/rebase-apply/rebasing"
+      then
+        r="|REBASE"
+	printf ${d_rot}${r}
+      elif test -f "$g/rebase-apply/applying"
+      then
+        r="|AM"
+	printf ${d_rot}${r}
+      else
+        r="|AM/REBASE"
+	printf ${d_rot}${r}
+      fi
+      b="$(git symbolic-ref HEAD 2>/dev/null)"
+    elif [ -f "$g/rebase-merge/interactive" ]
+    then
+      r="|REBASE-i"
+      b="$(cat "$g/rebase-merge/head-name")"
+      printf ${d_rot}${r}
+    elif [ -d "$g/rebase-merge" ]
+    then
+      r="|REBASE-m"
+      b="$(cat "$g/rebase-merge/head-name")"
+      printf ${d_rot}${r}
+    elif [ -f "$g/MERGE_HEAD" ]
+    then
+      r="|MERGING"
+      b="$(git symbolic-ref HEAD 2>/dev/null)"
+      printf ${d_rot}${r}
+    fi
+  fi
+}

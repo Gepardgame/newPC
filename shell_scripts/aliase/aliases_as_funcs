@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source /home/tom/Schreibtisch/Code/newPC/shell_scripts/farbcodes.sh
+source /home/tom/Schreibtisch/Code/newPC/shell_scripts/git_status
+
+function installer() {
+  echo -e "${1}\n${2}" | /home/tom/Schreibtisch/Code/newPC/shell_scripts/Installer
+}
+
+#function
