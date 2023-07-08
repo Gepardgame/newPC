@@ -20,3 +20,12 @@ alias aptitude='aptitude -y'
 alias echo='echo -e'
 alias c='clear'
 alias cl='c && l'
+alias wbash='vim ~/.bashrc'
+alias rbash='source ~/.bashrc'
+alias p="python3.11"
+alias i="ipython3"
+alias clone="git clone --recurse-submodules"
+
+# Variables
+wlan=wlp2s0
+eth=enp1s0f0

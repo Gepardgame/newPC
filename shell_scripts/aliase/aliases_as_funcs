@@ -2,6 +2,7 @@
 
 source ${scripts}/farbcodes.sh
 source ${scripts}/git_status
+source ${scripts}/auto_venv
 
 function installer() {
   echo -e "${1}\n${2}" | ${scripts}/Installer
