@@ -11,7 +11,8 @@ case $- in
 esac
 
 #Set the default Editor to vim
-export EDITOR="vim"
+export EDITOR="nvim"
+export NIX_SHELL_PRESERVE_PROMPT=1
 set -o vi
 
 # don't put duplicate lines or lines starting with space in the history.
