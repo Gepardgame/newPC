@@ -1,6 +1,6 @@
 #!/bin/bash
 
-home="$HOME/Code/Privat/newPC"
+home="$HOME/code/privat/newPC"
 scripts="${home}/shell_scripts"
 installers="${home}/install_packages"
 config="${home}/configs"
