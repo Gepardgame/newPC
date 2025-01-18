@@ -1,27 +1,27 @@
 #!/bin/bash
 source cuter
-  read Dateiendung
-  read Dateiname
+read Dateiendung
+read Dateiname
 
-  if [ $Dateiendung == 1 ]; then
-      sudo dpkg -i $Dateiname
-      sudo apt install -f
-      sudo dpkg -i $Dateiname
-      mv $Dateiname ~/Speicher/Downloads
-  fi
+if [ $Dateiendung == 1 ]; then
+	sudo dpkg -i $Dateiname
+	sudo apt install -f
+	sudo dpkg -i $Dateiname
+	mv $Dateiname ~/Speicher/Downloads
+fi
 
-  if [ $Dateiendung == 2 ]; then
-      tar -xf $Dateiname.tar*
-      mv $Dateiname ~/programs/.
-      mv $Dateiname.tar* ~/Speicher/Downloads
-  fi
+if [ $Dateiendung == 2 ]; then
+	tar -xf $Dateiname.tar*
+	mv $Dateiname ~/programs/.
+	mv $Dateiname.tar* ~/Speicher/Downloads
+fi
 
-  if [ $Dateiendung == 3 ]; then
-      java -jar $Dateiname
-      mv $Dateiname ~/Speicher/Downloads
-  fi
+if [ $Dateiendung == 3 ]; then
+	java -jar $Dateiname
+	mv $Dateiname ~/Speicher/Downloads
+fi
 
-  if [ $Dateiendung == 4 ]; then
-      rpm -ivh $Dateiname --nodeps --force
-      mv $Dateiname ~/Speicher/Downloads
-  fi
+if [ $Dateiendung == 4 ]; then
+	rpm -ivh $Dateiname --nodeps --force
+	mv $Dateiname ~/Speicher/Downloads
+fi

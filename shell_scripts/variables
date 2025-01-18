@@ -1,10 +1,9 @@
 #!/bin/bash
 
-home="$HOME/code/privat/newPC"
+home="$HOME/code/private/newPC"
 scripts="${home}/shell_scripts"
 installers="${home}/install_packages"
 config="${home}/configs"
 useragent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
 
-source ${scripts}/aliase/aliases
-source ${scripts}/aliase/aliases_as_funcs
+for file in $(find "$scripts" -type f -name "*.sh"); do source "$file"; done
