@@ -17,7 +17,7 @@ alias l='ls -halt'
 alias echo='echo -e'
 alias c='clear'
 alias cl='c && l'
-alias wbash='vim ~/.bashrc'
+alias wbash='nvim ~/.bashrc'
 alias rbash='source ~/.bashrc'
 alias p="python"
 alias i="ipython3"
@@ -26,6 +26,7 @@ alias hg="history | grep "
 alias bootlog="sudo cat /var/log/boot.log|more"
 alias gping="nmap -sn"
 alias copy="xsel --input --clipboard"
+alias hg="history | grep"
 alias past="xsel --output --clipboard"
 #alias gitcreateproject="git push --set-upstream git@mygit.th-deg.de:ts19084/$(git rev-parse --show-toplevel | xargs basename).git $(git rev-parse --abbrev-ref HEAD)"
 

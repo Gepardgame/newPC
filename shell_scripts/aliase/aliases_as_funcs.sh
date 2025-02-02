@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source ${scripts}/farbcodes.sh
-source ${scripts}/git_status
 source ${scripts}/new_cd
 source ${scripts}/parent_folder
 

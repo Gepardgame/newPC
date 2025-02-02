@@ -1,8 +1,5 @@
 #!/bin/bash
-source ${scripts}/git_status
 source ${scripts}/auto_venv
 function newcd() {
 	venv
-	export gitbranch=$(git_branch)
-	export gitmergerebaseconflict=$(GetMergeAndRebaseConflict)
 }
