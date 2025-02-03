@@ -2,7 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-source ~/code/private/newPC/shell_scripts/variables
+source ~/.private/newPC/shell_scripts/variables
 
 # If not running interactively, don't do anything
 case $- in
@@ -65,7 +65,7 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
-source /usr/share/git/completion/git-prompt.sh
+[ -x /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
 GIT_PS1_SHOWUPSTREAM="auto"
 if [ "$color_prompt" = yes ]; then
 	PS1='${debian_chroot:+($debian_chroot)}'${h_gruen}${fett}'[\u@\h]'${normal}': '${d_rot}'\w'${d_aqua}'$(__git_ps1 " (%s) ")'${normal}'\$ '
@@ -106,6 +106,11 @@ fi
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [ -f /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash ] && . /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash
 
-export NVM_DIR="$HOME/.config/nvm"
+. "$HOME/.cargo/env"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion

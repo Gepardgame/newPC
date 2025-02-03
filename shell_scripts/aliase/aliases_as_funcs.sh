@@ -1,9 +1,5 @@
 #!/bin/bash
 
-source ${scripts}/farbcodes.sh
-source ${scripts}/new_cd
-source ${scripts}/parent_folder
-
 function installer() {
 	echo -e "${1}\n${2}" | ${scripts}/Installer
 }

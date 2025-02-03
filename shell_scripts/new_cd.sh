@@ -1,5 +1,4 @@
 #!/bin/bash
-source ${scripts}/auto_venv
 function newcd() {
 	venv
 }
