@@ -27,6 +27,7 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 HISTTIMEFORMAT="%F %T "
 HISTCONTROL=ignoredups
+GLFW_IM_MODULE=ibus
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -65,8 +66,9 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
-source /usr/share/git/completion/git-prompt.sh
+. /usr/share/git/completion/git-prompt.sh
 GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWCONFLICTSTATE="yes"
 if [ "$color_prompt" = yes ]; then
 	PS1='${debian_chroot:+($debian_chroot)}'${h_gruen}${fett}'[\u@\h]'${normal}': '${d_rot}'\w'${d_aqua}'$(__git_ps1 " (%s) ")'${normal}'\$ '
 else

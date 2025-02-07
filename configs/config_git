@@ -1,7 +1,16 @@
 #!/bin/bash
 
-git config --global core.editor "vim"
-read -p "Your Git Username: " name
-git config --global user.name $name
-read -p "Your Git Email Address: " email
-git config --global user.email $email
+git config --global core.editor "nvim"
+
+# Configure dfferent name for different websites
+mkdir -p ~/.config/git/templates/hooks
+git config --global init.templatedir ~/.config/git/templates
+git clone https://github.com/DrVanScott/git-clone-init.git /tmp/git-clone-init
+cp /tmp/git-clone-init/post-checkout ~/.config/git/templates/hooks/
+cp /tmp/git-clone-init/git-clone-init ~/.config/git/templates/
+
+# Lib Secret
+# Checks which is running
+dbus-send --session --print-reply --dest=org.freedesktop.DBus / org.freedesktop.DBus.GetConnectionUnixProcessID string:org.freedesktop.secrets
+
+git config --global credential.helper /usr/lib/git-core/git-credential-libsecret

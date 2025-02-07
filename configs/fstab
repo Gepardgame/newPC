@@ -1,0 +1,1 @@
+user@server /mount fuse.sshfs  uid=1000,gid=1000,user,idmap=user,follow_symlinks,x-systemd.automount,_netdev,reconnect,allow_root,default_permissions 0 0

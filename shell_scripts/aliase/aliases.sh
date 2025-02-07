@@ -28,6 +28,7 @@ alias gping="nmap -sn"
 alias copy="xsel --input --clipboard"
 alias hg="history | grep"
 alias past="xsel --output --clipboard"
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 #alias gitcreateproject="git push --set-upstream git@mygit.th-deg.de:ts19084/$(git rev-parse --show-toplevel | xargs basename).git $(git rev-parse --abbrev-ref HEAD)"
 
 # Variables

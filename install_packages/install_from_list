@@ -1,12 +1,51 @@
+# pacman
+curl
+wget
+screen
+apt-transport-https
+ca-certificates
+gnupg2
+software-properties-common
 ssh
+sshfs
 git
 aptitude
-vim
+nvim
 rlwrap
-htop
+btop
 thunderbird
 python3
-brave-browser
 mc
 man
 tree
+qt6ct
+rustup
+go
+xsel
+direnv
+discord
+teamspeak3
+libssl-dev
+fzf
+base-devel
+qemu*
+virt-viewer
+virt-manager
+libsecret-1-0
+libsecret-1-dev
+remmina
+freerdp
+openvpn
+docker
+
+# yay
+spotify-player-full
+iterm2-shell-integration
+teams-for-linux
+kitty
+dotnet-sdk
+ibus
+
+
+sh <(curl -L https://nixos.org/nix/install) --daemon
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v1.40.1/install.sh | bash

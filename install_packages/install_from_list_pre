@@ -1,7 +1,0 @@
-curl
-wget
-screen
-apt-transport-https
-ca-certificates
-gnupg2
-software-properties-common
