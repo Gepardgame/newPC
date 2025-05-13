@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source ${scripts}/farbcodes.sh
-source ${scripts}/new_cd
 source ${scripts}/parent_folder
 
 function installer() {

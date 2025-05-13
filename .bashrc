@@ -28,6 +28,7 @@ HISTFILESIZE=2000
 HISTTIMEFORMAT="%F %T "
 HISTCONTROL=ignoredups
 GLFW_IM_MODULE=ibus
+export QT_QPA_PLATFORMTHEME=qt6ct
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -96,7 +97,6 @@ if ! shopt -oq posix; then
 		. /etc/bash_completion
 	fi
 fi
-PROMPT_COMMAND='newcd'
 export NIX_SHELL_PRESERVE_PROMPT=1
 eval "$(direnv hook bash)"
 
@@ -111,3 +111,5 @@ fi
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
