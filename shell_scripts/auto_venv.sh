@@ -14,11 +14,12 @@ function venv() {
 		done
 	else
 		## check the current folder belong to earlier VIRTUAL_ENV folder
-		# if yes then do nothing
-		# else deactivate
+		## if yes then do nothing
+		## else deactivate
 		parentdir="$(dirname "$VIRTUAL_ENV")"
 		if [[ "$PWD"/ != "$parentdir"/* ]]; then
 			deactivate
+
 		fi
 	fi
 

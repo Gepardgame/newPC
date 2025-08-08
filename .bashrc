@@ -26,7 +26,6 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 HISTTIMEFORMAT="%F %T "
-HISTCONTROL=ignoredups
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -94,9 +93,7 @@ if ! shopt -oq posix; then
 		. /etc/bash_completion
 	fi
 fi
-PROMPT_COMMAND='newcd'
 export NIX_SHELL_PRESERVE_PROMPT=1
-eval "$(direnv hook bash)"
 
 if [ -d "$HOME/.local/bin" ]; then
 	export PATH="$HOME/.local/bin:$PATH"
@@ -106,11 +103,18 @@ fi
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [ -f /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash ] && . /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.bash
 
+# Rust
 . "$HOME/.cargo/env"
+
+# Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - bash)"
+eval "$(pyenv virtualenv-init -)"
 
+eval "$(direnv hook bash)"
+
+# Node Version Manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
